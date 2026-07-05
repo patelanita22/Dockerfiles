@@ -1,0 +1,22 @@
+==============================
+Production Dockerfile
+==============================
+
+
+FROM openjdk:17-slim
+
+LABEL maintainer="devops-team"
+
+ENV JAVA_OPTS=""
+
+WORKDIR /app
+
+COPY app.jar app.jar
+
+EXPOSE 8080
+
+RUN useradd -m appuser
+
+USER appuser
+
+CMD ["sh", "-c", "java $JAVA_OPTS -jar app.jar"]
