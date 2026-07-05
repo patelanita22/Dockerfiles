@@ -1,0 +1,15 @@
+===================================
+Better Dockerfile
+===================================
+
+FROM python:3.11-slim
+
+WORKDIR /app
+
+COPY requirements.txt .                # copy reequirements in inside container folder
+
+RUN pip install -r requirements.txt    # download package and save cache
+
+COPY . .
+
+CMD ["python", "app.py"]
