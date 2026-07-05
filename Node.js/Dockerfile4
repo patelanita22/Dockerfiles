@@ -1,0 +1,44 @@
+=================================
+With environemnt variable
+================================
+
+
+
+FROM node:20-alpine
+
+WORKDIR /app
+
+COPY package*.json ./
+
+RUN npm ci --omit=dev
+
+COPY . .
+
+ENV NODE_ENV=production
+ENV PORT=3000
+ENV APP_NAME="Banking Application"
+
+EXPOSE 3000
+
+USER node
+
+CMD ["npm", "start"]
+
+
+
+Override Environment Variables at Runtime
+
+without rebuilding images
+
+
+docker run -d \
+-p 5000:5000 \
+-e PORT=5000 \
+-e APP_NAME="Production Banking App" \
+banking-app:v1
+
+
+
+
+
+

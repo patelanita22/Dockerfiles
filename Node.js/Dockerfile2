@@ -1,0 +1,16 @@
+=======================================
+Better Dockerfile (Faster Builds)
+=======================================
+
+
+FROM node:20
+
+WORKDIR /app
+
+COPY package*.json ./    # when we run npm install then npm automatically create package-lock .json
+
+RUN npm install
+
+COPY . .
+
+CMD ["npm", "start"]

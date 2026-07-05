@@ -1,0 +1,26 @@
+===================================
+Production Dockerfile
+==================================
+
+
+FROM node:20-alpine
+
+WORKDIR /app
+
+COPY package*.json ./#npm init -y = package.json, and npm install express = package-lock.json & node_modules auto create 
+
+RUN npm ci --omit=dev #npm ci = install depedencies clean and fast , --omit=dev = Dont install Development dependencies 
+COPY . .
+
+EXPOSE 3000
+
+CMD ["npm", "start"]
+
+
+
+
+Why node:20-alpine?
+Smaller image
+Faster download
+Lower storage usage
+Reduced attack surface
